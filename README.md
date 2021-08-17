@@ -13,14 +13,15 @@ The Magtag is small and light enough to be held comfortably in the hand during u
 
 ## Installation
 Requirements
-- Adafruit Magtag
-- USB cable connection to host computer
-- CicruitPython 6.3.0
+- <a href="https://www.adafruit.com/product/4800" target="_blank">Adafruit Magtag</a>
+- <a href="https://en.wikipedia.org/wiki/USB-C" target="_blank">USB cable connection to host computer</a>
+- <a href="https://downloads.circuitpython.org/bin/adafruit_magtag_2.9_grayscale/en_GB/adafruit-circuitpython-adafruit_magtag_2.9_grayscale-en_GB-6.3.0.uf2" target="_blank">CicruitPython 6.3.0</a>
 
 Copy the files located in the dist folder to the CIRCUITPY folder of the Adafruit MagTag.
 
-Note the implementation does not use WiFi and thus a secrets.py file should not typically be located on the CIRCUITPY drive.
-
+Note 
+- The implementation does not use WiFi and thus a secrets.py file should not typically be located on the CIRCUITPY drive.
+- Following release of <a href="https://github.com/adafruit/circuitpython/releases" target="_blank">CircuitPython 7</a> to stable, the code will implement switch off of HID disk and serial ports via boot.py
 
 ## Notes
 The system was implemented for use under with Microsoft Windows&trade; and may function with other operating environments, though this has not been evaluated.
