@@ -1,8 +1,8 @@
 """><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><-->
 # --------------------------------------
 # Project          : MacroPad
-# Version          : 0.1
-# Date             : 10 Aug 2021
+# Version          : 0.2
+# Date             : 18 Aug 2021
 # Author           : OneOfTheInfiniteMonkeys
 # Copyright        : (c) Copyright OneOfTheInfiniteMonkeys All Rights Reserved
 # Source Location  : https://github.com/OneOfTheInfiniteMonkeys/MTMP
@@ -21,23 +21,23 @@ import board  #                         Board level functions
 import displayio  #                     Graphics functions access
 import usb_hid  #                       Access tu USB device emulation
 from adafruit_magtag.magtag import MagTag  # Wrapper for lower level board features - Display, Network Graphics Peripherals
-from adafruit_display_shapes.line import Line  # Line drawing support
 
-from adafruit_hid.keyboard import Keyboard
+from adafruit_hid.keyboard import Keyboard  # Keyboard device emulation
 from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
 from adafruit_hid.keycode import Keycode  # import keycode definitions
-from adafruit_hid.consumer_control import ConsumerControl
+from adafruit_hid.consumer_control import ConsumerControl  # Volume control
 from adafruit_hid.consumer_control_code import ConsumerControlCode
 
-import helper as hlp                     # Helper routines for Macropad
+import helper as hlp  #                 Helper routines for Macropad
 
 # ------------------------------------------------------------------------------
 def set_mt_leds(ldclr, lbl):
     """
     # --------------------------------------
+    # Set LED's to colour and intensity 
     # --------------------------------------
     """
-    if (lbl == 0):  #  Default value for light booster level
+    if (lbl == 0):  #  Ensure light booster level is non zero so LED is active
         lbl = 4
     magtag.peripherals.neopixels[3] = (ldclr) * lbl  # colour * brightness
     magtag.peripherals.neopixels[2] = (ldclr) * lbl
@@ -53,7 +53,6 @@ def button_read(magtag):
     # --------------------------------------
     # Reads the MagTag buttons and returns an integer representing the
     # combination of buttons pressed
-    # combination of buttons pressed
     # No buttons pressed = 0 all buttons pressed = 15
     """
     # bpv = Button Pressed Value
@@ -65,6 +64,9 @@ def button_read(magtag):
     return bpv                 # return a value representing the buttons pressed
 # ------------------------------------------------------------------------------
 
+# ------------------------------------------------------------------------------
+# Main code starts here
+# ------------------------------------------------------------------------------
 # As this has a delay intended to follow power up, it is placed here
 # The keyboard object!
 time.sleep(1)  # Sleep for a bit to avoid a race condition on some systems
@@ -77,32 +79,11 @@ keyboard_layout = KeyboardLayoutUS(keyboard)  # We're in the US :)
 magtag = MagTag(rotation=0)
 magtag.peripherals.neopixels_disable = True  # Ensure the LED's are off
 
-"""
-# Create reference to access the e-ink display
-display = board.DISPLAY
-# Make the display context
-splash = displayio.Group()
-
-# Make a background color fill
-color_bitmap = displayio.Bitmap(display.width, display.height, 1)
-color_palette = displayio.Palette(1)
-color_palette[0] = 0xFFFFFF
-bg_sprite = displayio.TileGrid(color_bitmap, x=0, y=0, pixel_shader=color_palette)
-splash.append(bg_sprite)
-
-# Draw divider lines on the screen
-splash.append(Line(0, 20, 128, 20, 0x000000))
-splash.append(Line(64, 20, 64, 296, 0x000000))
-
-display.show(splash)
-"""
-
 DISPLAY_UPDATE_PERIOD = 3  #                                    Default delay period for display re-draws
 
 KbdLayer = 0  #                                                 Which key layer use e.g. Zoom -> Teams and so on
 KbdShift = 0  #                                                 Flag indicating Shift active
-KbdShift = 0  #                                                 Allows for time out of Shift functions
-
+KbdShiftTmr = 0  #                                              Allows for time out of Shift functions
 
 magtag.set_background("/bmps/magtag-macro-00.bmp")  #  Load default background graphic
 # Main display text for user messages
@@ -135,8 +116,8 @@ magtag.peripherals.neopixels[0] = LOW_BLUE * LBL  #        Blue Power On lightin
 
 print("Waiting for button press...")
 while True:  #                                             Infinite loop - look at buttons - generate keys
-    bpv = button_read(magtag)
-    if (bpv != 0):
+    bpv = button_read(magtag)  #                               Read the state of the MagTag buttons
+    if (bpv != 0):  #                                          Has a MagTag button aka a key been pressed
         if (bpv > 15):  #                                      Manage overflows
             bpv &= bpv
         time.sleep(0.02)  #                                    Debounce period
@@ -206,13 +187,13 @@ while True:  #                                             Infinite loop - look 
     bpv = 0  #                                                 Clear the button press value
 
     # Shift modifer time out feature
-    if (KbdShift == 1):
-        KbdShiftTmr += 1
+    if (KbdShift == 1):  #                                     Is keyboard Shift active
+        KbdShiftTmr += 1  #                                    Shift timer expiry rate increment
         if (KbdShiftTmr >= 14):  #                             At least n times the run period below ~ 1.5 sconds
-            KbdShiftTmr = 0
-            KbdShift = 0
+            KbdShiftTmr = 0  #                                 Reset Shift timer
+            KbdShift = 0  #                                    Reset Shift mode
 
-            x = set_mt_leds(BLACK, 4)  #                 All LED's off
-            magtag.peripherals.neopixels[0]= LOW_BLUE * LBL # Low Blue
+            x = set_mt_leds(BLACK, 4)  #                       All LED's off
+            magtag.peripherals.neopixels[0]= LOW_BLUE * LBL  # Low Blue
 
     time.sleep(0.10) # Repeat rate
