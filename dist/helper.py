@@ -1,8 +1,8 @@
 """><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><-->
 # --------------------------------------
 # Project          : MacroPad
-# Version          : 0.1
-# Date             : 10 Aug 2021
+# Version          : 0.3
+# Date             : 20 Aug 2021
 # Author           : OneOfTheInfiniteMonkeys
 # Copyright        : (c) Copyright OneOfTheInfiniteMonkeys All Rights Reserved
 # Source Location  : https://github.com/OneOfTheInfiniteMonkeys/MTMP
@@ -38,6 +38,7 @@ from adafruit_magtag.magtag import MagTag # Wrapper for lower level board featur
 # nv_store_read_str(Location)
 
 # count_neopixel(sel_mode, ldclr, lbl)
+# set_mt_leds(ldclr, lbl)
 # mode_to_text(sel_mode)
 # test_to_mode(sel_text)
 # mode_to_lrg_icon_file
@@ -109,6 +110,23 @@ def nv_store_read_str(Location):
         i += 1                    # Increment the counter to point at next byte
     # <-- End of loop reading from sleep memory
     return StrToStore  # return the string read from the memory location
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+def set_mt_leds(ldclr, lbl, magtag):
+    """
+    # --------------------------------------
+    # Set LED's to colour and intensity
+    # --------------------------------------
+    """
+    if (lbl == 0):  #  Ensure light booster level is non zero so LED is active
+        lbl = 4
+    magtag.peripherals.neopixels[3] = (ldclr) * lbl  # colour * brightness
+    magtag.peripherals.neopixels[2] = (ldclr) * lbl
+    magtag.peripherals.neopixels[1] = (ldclr) * lbl
+    magtag.peripherals.neopixels[0] = (ldclr) * lbl
+
+    return
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
