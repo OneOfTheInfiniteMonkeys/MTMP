@@ -1,4 +1,0 @@
-Click
-requests
-semver
-wheel
