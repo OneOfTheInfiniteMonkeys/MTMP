@@ -1,0 +1,4 @@
+Click
+requests
+semver
+wheel
