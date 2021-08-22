@@ -2,3 +2,14 @@ dist: xenial
 language: python
 python:
 - '3.7'
+      
+      script:
+        - echo "Building mpy-cross" && echo "travis_fold:start:mpy-cross"
+        - python3 -u -m circuitpython_build_tools.scripts.build_mpy_cross circuitpython_build_tools/data/
+        - echo "travis_fold:end:mpy-cross"
+        - pip install -e .
+        - echo "Cloning Adafruit_CircuitPython_Bundle" && echo "travis_fold:start:clone"
+        - git clone --recurse-submodules https://github.com/adafruit/Adafruit_CircuitPython_Bundle.git
+        - echo "travis_fold:end:clone"
+        - cd Adafruit_CircuitPython_Bundle
+        - circuitpython-build-bundles --filename_prefix test-bundle --library_location libraries --library_depth 2
