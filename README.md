@@ -29,7 +29,7 @@ Copy the files located in the dist folder to the CIRCUITPY folder of the Adafrui
 
 Note 
 - The implementation does not use WiFi and thus a secrets.py file should not typically be located on the CIRCUITPY drive.
-- Following release of <a href="https://github.com/adafruit/circuitpython/releases" target="_blank">CircuitPython 7</a> to stable, the code will implement switch off of HID disk and serial ports via boot.py
+- Following release of <a href="https://github.com/adafruit/circuitpython/releases" target="_blank">CircuitPython 7</a> to stable, the code will implement switch off of HID disk and serial ports via boot.py. If electing to test with <a href="https://github.com/adafruit/circuitpython/releases" target="_blank">CircuitPython 7.x.x</a> you need to replace the lib .mpy files with the 7.x.x counterparts.
 
 ## Notes
 The system was implemented for use under with Microsoft Windows&trade; and may function with other operating environments, though this has not been evaluated.
