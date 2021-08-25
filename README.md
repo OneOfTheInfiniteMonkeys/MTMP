@@ -12,7 +12,7 @@ MagTag MacroPad (MTMP) is a <a href="https://circuitpython.org/" target="_blank"
 ![GitHub repo size](https://img.shields.io/github/repo-size/OneOfTheInfiniteMonkeys/MTMP?style=flat-square)
 
 ## Introduction
-The CircuitPython implementation on the MagTag is intended to allow Zoom&trade; and Teams&trade; user Audio & Video mode toggling in conference usage scenarios. Additionally, via a "Shift" mode the "Consumer Control" function is intended to permit adjustment of the system volume. The "Shift" mode employs a time delay feature which automatically returns functionality to the normal mode following a short peroid of no key press activity.
+The CircuitPython implementation on the MagTag is intended to allow Zoom&trade; and Teams&trade; user Audio & Video mode toggling in conference usage scenarios. Additionally, via a "Shift" mode the "Consumer Control" function is intended to permit adjustment of the system volume. The "Shift" mode employs a time delay feature which automatically returns functionality to the normal mode following a short period of no button press activity.
 
 Whilst the MagTag inbuilt buttons lack the feel of dedicated key switches, such as the Cherry MX&trade; for example. There are no additional modules or wiring etc. required. Functional clarity benefits from the Magtag's clear e-ink graphic display and LED's which give improved indication of intended button function and macro pad mode(s), whilst being easy on the eye. Functions are kept to a minimum where simplicity is dovetailed with functionality to maintain clarity and ease of operation.
 
