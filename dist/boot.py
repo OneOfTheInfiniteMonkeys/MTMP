@@ -1,8 +1,8 @@
 """
 # --------------------------------------
 # Project          : MacroPad
-# Version          : 0.1
-# Date             : 25 Aug 2021
+# Version          : 0.2
+# Date             : 04 Sep 2021
 # Author           : OneOfTheInfiniteMonkeys
 # Copyright        : (c) Copyright OneOfTheInfiniteMonkeys All Rights Reserved
 # Source Location  : https://github.com/OneOfTheInfiniteMonkeys/MTMP
@@ -33,16 +33,30 @@ import usb_cdc #                        Access to Serial port to turn off REPL
 # Only if operating system version 7 and above
 if (sys.implementation.version[0] >= 7):
 
-    # For switch defitnions see PCB and https://learn.adafruit.com/assets/102127
+    # For switch definitions see PCB and https://learn.adafruit.com/assets/102127
     switch = digitalio.DigitalInOut(board.D11)  #     Switch near USB connector
     switch.direction = digitalio.Direction.INPUT  #   Enable reading of switch
-    switch.pull = digitalio.Pull.UP  #      True = not pressed, False = pressed
+    switch.pull = digitalio.Pull.UP  #  True = not pressed, False = pressed
 
-    # Turn off the HID devices if button not pressed
-    if (switch.value):  #                   Button pressed is FALSE i.e. active low
-        # print("Normal Mode")
-        storage.disable_usb_drive()  #      Turn off CIRCUITPY.
-        usb_cdc.disable()  #                Turn off REPL.
+    # This section allows override of HID device disable for update or debug etc.
+    # 
+    # When the button identified above as 'switch' is pressed whilst the reset
+    # button is pressed. 'switch.value' will evaluate to False. The code fragment
+    # below disabling the HID devices is bypassed. Leaving both USB file access
+    # and REPL (serial port) enabled to support debug mode and updates
+    if (switch.value):  #               When button not pressed returning TRUE
+        # Turn off the HID devices if button not pressed i.e. 'Normal Running Mode'
+        # print("Normal Running Mode")
+        storage.disable_usb_drive()  #  Turn off CIRCUITPY drive.
+        usb_cdc.disable()  #            Turn off REPL (Read-Evaluate-Print-Loop).
 #------------------------------------------------------------------------------
 # Control handed over to code.py following hard reset
 
+"""
+# --------------------------------------
+#
+# --------------------------------------
+2021-08-18 - 0.2 - Comment format and update only
+2021-08-25 - 0.1 - Github release
+# --------------------------------------
+"""
