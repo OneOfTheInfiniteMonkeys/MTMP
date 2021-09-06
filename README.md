@@ -32,7 +32,7 @@ Note
 - Following release of <a href="https://github.com/adafruit/circuitpython/releases" target="_blank">CircuitPython 7</a> to stable, the code will implement switch off of HID disk and serial ports via boot.py. If electing to test with <a href="https://github.com/adafruit/circuitpython/releases" target="_blank">CircuitPython 7.x.x</a> you need to replace the lib .mpy files with the 7.x.x counterparts.
 
 ## Hardware
-Whilst not required for single computer operation. Use of a small LiPo battery, supported by the MagTag, permits clean switchover when using the MagTag MacroPad through a <a href="https://en.wikipedia.org/wiki/KVM_switch" target="_blank">KVM</a>. Without a battery, the unit will tend to reboot on switch over, as power may be momentarily interrupted during the switch over process. The software includes internal battery monitoring and notification, to address the eventuality a KVM channel without power is selected or the KVM channel device is unpowered.
+Whilst not required for single computer operation. Use of a small <a href="https://www.adafruit.com/product/4236" target="_blank">LiPo</a> battery, supported by the MagTag, permits clean switchover when using the MagTag MacroPad through a <a href="https://en.wikipedia.org/wiki/KVM_switch" target="_blank">KVM</a>. Without a battery, the unit will tend to reboot on switch over, as power may be momentarily interrupted during the switch over process. The software includes internal battery monitoring and notification, to address the eventuality a KVM channel without power is selected or the KVM channel device is unpowered.
 
 ## Notes
 The system was implemented for use under with Microsoft Windows&trade; and may function with other operating environments, though this has not been evaluated.
