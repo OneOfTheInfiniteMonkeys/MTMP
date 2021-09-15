@@ -1,8 +1,8 @@
 """><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><-->
 # --------------------------------------
 # Project          : MacroPad
-# Version          : 0.3
-# Date             : 20 Aug 2021
+# Version          : 0.4
+# Date             : 15 Sep 2021
 # Author           : OneOfTheInfiniteMonkeys
 # Copyright        : (c) Copyright OneOfTheInfiniteMonkeys All Rights Reserved
 # Source Location  : https://github.com/OneOfTheInfiniteMonkeys/MTMP
@@ -82,9 +82,20 @@ magtag.peripherals.neopixels[0] = LOW_YELLOW * LBL  #       Yellow - Busy Starti
 # --------------------------------------
 # As this has a delay intended to follow power up, it is placed here
 # The keyboard object!
-time.sleep(1)  # Sleep for a bit to avoid a race condition on some systems
-keyboard = Keyboard(usb_hid.devices)
-keyboard_layout = KeyboardLayoutUS(keyboard)  # We're in the US :)
+# --------------------------------------
+time.sleep(2)  # Sleep for a bit to avoid a race condition on some systems
+while True:
+    try:
+        keyboard = Keyboard(usb_hid.devices)
+        keyboard_layout = KeyboardLayoutUS(keyboard)  # We're in the US :)
+    except:
+        x = hlp.set_mt_leds(BLACK, 0, magtag)  #                    All Led's off - LED pulse
+        time.sleep(1.0)  #                                          Sleep for a bit
+        magtag.peripherals.neopixels[0] = LOW_YELLOW * LBL  #       Yellow - Busy Starting
+        time.sleep(1.0)  #                                          Sleep for a bit
+        continue
+    else:
+        break
 # --------------------------------------
 
 DISPLAY_UPDATE_PERIOD = 3  #                                Default delay period for display re-draws
@@ -202,6 +213,10 @@ while True:  #                                              Infinite loop - look
 # --------------------------------------
 #
 # --------------------------------------
+2021-09-15 - 0.4 - Added error detect to usb hid creation to prevent occasional
+                   USB detection error when connected to unpowered device
+                   LED pulses yellow on off during loop
+                   
 2021-08-21 - 0.3 - Code clean up
                    Add power on Yellow busy LED indication
                    Modifed LED handling through Shift state
