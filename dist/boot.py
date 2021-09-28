@@ -1,8 +1,8 @@
 """
 # --------------------------------------
 # Project          : MacroPad
-# Version          : 0.2
-# Date             : 04 Sep 2021
+# Version          : 0.3
+# Date             : 28 Sep 2021
 # Author           : OneOfTheInfiniteMonkeys
 # Copyright        : (c) Copyright OneOfTheInfiniteMonkeys All Rights Reserved
 # Source Location  : https://github.com/OneOfTheInfiniteMonkeys/MTMP
@@ -16,12 +16,12 @@
 # --------------------------------------
 # Notes            :
 #-------------------
-# Runs once on sartup
+# Runs once on startup
 # See boot_out.txt for any errors raised in this code
 #
 # According to notes on boot.py
 # May be called one of settings.txt, settings.py, boot.py, boot.txt
-# Ouptut direcetd to boot_out.txt
+# Ouptut directed to boot_out.txt
 """
 # -------><--------><--------><--------><--------><--------><--------><--------
 import board  #                         Access to
@@ -56,6 +56,7 @@ if (sys.implementation.version[0] >= 7):
 # --------------------------------------
 #
 # --------------------------------------
+2021-09-28 - 0.3 - Comment format and update only
 2021-08-18 - 0.2 - Comment format and update only
 2021-08-25 - 0.1 - Github release
 # --------------------------------------
