@@ -18,8 +18,7 @@
 """
 import time  #                          To enable pause operations e.g. key debounce
 import board  #                         Board level functions
- #import displayio  #                     Graphics functions access
-import usb_hid  #                       Access tu USB device emulation
+import usb_hid  #                       Access to USB device emulation
 from adafruit_magtag.magtag import MagTag  # Wrapper for lower level board features - Display, Network Graphics Peripherals
 
 from adafruit_hid.keyboard import Keyboard  # Keyboard device emulation
@@ -50,7 +49,7 @@ def button_read(magtag):
 # ------------------------------------------------------------------------------
 # Main code starts here
 # ------------------------------------------------------------------------------
-# intantiate the magtag object
+# instantiate the magtag object
 magtag = MagTag(rotation = 0)
 
 # --------------------------------------
@@ -72,7 +71,7 @@ LOW_YELLOW = 0x020200
 # --------------------------------------
 
 magtag.peripherals.neopixel_disable = False  #              Permit writing to the Neopixels
-x = hlp.set_mt_leds(BLACK, 0, magtag)  #                    All Led's off
+x = hlp.set_mt_leds(BLACK, 0, magtag)  #                    All LED's off
 LBLPeriod = 15  #                                           Period between light intensity reads
 LBLTm = time.monotonic() + LBLPeriod  #                     Update the intensity at this relative time
 LBL = 4  #                                                  Default Light Booster Level
@@ -89,7 +88,7 @@ while True:
         keyboard = Keyboard(usb_hid.devices)
         keyboard_layout = KeyboardLayoutUS(keyboard)  # We're in the US :)
     except:
-        x = hlp.set_mt_leds(BLACK, 0, magtag)  #                    All Led's off - LED pulse
+        x = hlp.set_mt_leds(BLACK, 0, magtag)  #                    All LED's off - LED pulse
         time.sleep(1.0)  #                                          Sleep for a bit
         magtag.peripherals.neopixels[0] = LOW_YELLOW * LBL  #       Yellow - Busy Starting
         time.sleep(1.0)  #                                          Sleep for a bit
@@ -144,7 +143,7 @@ while True:  #                                              Infinite loop - look
                         if (bpv == 1):
                             KbdLayer += 1  #                          Increment to next keyboard layer
                             KbdShift = 0  #                           Cancel shift modifier
-                            x = hlp.set_mt_leds(BLACK, 0, magtag)  #  Led's off as we are busy
+                            x = hlp.set_mt_leds(BLACK, 0, magtag)  #  LED's off as we are busy
                             # Note - Next mode graphic shown
                             magtag.graphics.set_background("/bmps/magtag-macro-01.bmp")  # Load background graphic
                             magtag.set_text("Teams", mt_idx, auto_refresh = True)
@@ -167,7 +166,7 @@ while True:  #                                              Infinite loop - look
                             KbdLayer = 0  #                           Reset keyboard layer
                             KbdShift = 0  #                           Cancel shift modifier
                             # Note - Next mode graphic shown
-                            x = hlp.set_mt_leds(BLACK, 0, magtag)  #  Led's off as we are busy
+                            x = hlp.set_mt_leds(BLACK, 0, magtag)  #  LED's off as we are busy
                             magtag.graphics.set_background("/bmps/magtag-macro-00.bmp")  # Load background graphic
                             magtag.set_text("Zoom", mt_idx, auto_refresh = True)
                             d = hlp.while_display_busy(DISPLAY_UPDATE_PERIOD)  #           Allow display to complete update
@@ -213,18 +212,18 @@ while True:  #                                              Infinite loop - look
 # --------------------------------------
 #
 # --------------------------------------
-2021-09-15 - 0.4 - Added error detect to usb hid creation to prevent occasional
+2021-09-15 - 0.4 - Added error detect to USB HID creation to prevent occasional
                    USB detection error when connected to unpowered device
                    LED pulses yellow on off during loop
                    
 2021-08-21 - 0.3 - Code clean up
                    Add power on Yellow busy LED indication
-                   Modifed LED handling through Shift state
+                   Modified LED handling through Shift state
                    Added optional key press event flash yellow
                    Commented out debug printing of button press value
                    Moved set_mt_leds to helper module
-                   Use of timestamp fot LED Shift timer as opposed to counter
-                   Implmented button value range limit
+                   Use of timestamp for LED Shift timer as opposed to counter
+                   Implemented button value range limit
 
 2021-08-18 - 0.2 - Github functional release
                    Code tidy up, amend KbdDhiftTmr initialisation
