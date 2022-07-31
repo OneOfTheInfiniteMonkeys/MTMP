@@ -1,8 +1,8 @@
 """><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><-->
 # --------------------------------------
 # Project          : MacroPad
-# Version          : 0.3
-# Date             : 20 Aug 2021
+# Version          : 0.4
+# Date             : 31 Aug 2022
 # Author           : OneOfTheInfiniteMonkeys
 # Copyright        : (c) Copyright OneOfTheInfiniteMonkeys All Rights Reserved
 # Source Location  : https://github.com/OneOfTheInfiniteMonkeys/MTMP
@@ -198,7 +198,6 @@ def button_read(magtag):
     # --------------------------------------
     # Reads the MagTag buttons and returns an integer representing the
     # combination of buttons pressed
-    # combination of buttons pressed
     # No buttons pressed = 0 all buttons pressed = 15
     """
     # bpv = Button Pressed Value
@@ -240,7 +239,7 @@ def light_boost_level_factor(LightLevel):
     # Calculate the Light boost level based on the provided Light Level
     # taken from a light sensor, or possibly derived from time of day etc.
     # Colours can be multiplied by the boost level to increase the brightness
-    # such that RGB 00 00 08 becomes RGB 00 00 10 when multiplied by 2
+    # such that RGB 00 00 08 becomes RGB 00 00 10 when multiplied by 2 (hex)
     # Note:
     #   Values shown above in hex
     #   The boost points are empiricaly selected
@@ -276,9 +275,9 @@ def light_boost_level(LightLevel):
 def pause_or_press(magtag, delay_period):
     """
     # --------------------------------------
-    # Pauses unless key pressed returns key pressed value
+    # Pauses unless key pressed, returns key pressed value
     # Flashing one of the NEOPIXEL LED's
-    # The delay period shold be at least 1 second
+    # The delay period should be at least 1 second
     """
     # Allow the user chance to press any button on the front of the MagTag
     i = 0                                                     # Loop counter
@@ -286,7 +285,7 @@ def pause_or_press(magtag, delay_period):
     end_period = delay_period * 10                            # Convert delay_period to sleep counts
     while ((i <= end_period) & (b == 0)):
         i += 1                                                # Increment the counter
-        b = button_read(magtag)                                  # Read all buttons and return a value
+        b = button_read(magtag)                               # Read all buttons and return a value
         time.sleep(0.1)                                       # We don't need to sample too quickly
     return int(b)                                             # return the button pressed 0 if none pressed
 # ------------------------------------------------------------------------------
@@ -295,8 +294,8 @@ def pause_or_press(magtag, delay_period):
 def while_display_busy(delay_period):
     """
     # --------------------------------------
-    # Monitor the display, as it might complete early otherwise exit if the delay period expires
-    # normally the returned value will reflect that the display completed updating sooner than
+    # Monitor the display, as it might complete early, otherwise exit if the delay period expires
+    # Normally the returned value will reflect that the display completed updating sooner than
     # the allowed delay_period
     """
     display = board.DISPLAY                                   # permit access to the display device (e-ink)
@@ -347,8 +346,8 @@ def battery_check(sv, lpsp, mt_idx, magtag):
 def Current_Battery_Level(sv):
     """
     # --------------------------------------
-    # Assign a battery level to the voltage
-    # Returns an integer  level classification
+    # Assign a battery level to the voltage supplied to the routine
+    # Returns an integer level classification
     # e.g. for battery icon selection
     # Approximation for the PKCELL 500 mAh battery
     # sv = System Voltage
