@@ -1,14 +1,14 @@
 """><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><-->
 # --------------------------------------
 # Project          : MacroPad
-# Version          : 0.4
-# Date             : 15 Sep 2021
+# Version          : 0.5
+# Date             : 05 Feb 2023
 # Author           : OneOfTheInfiniteMonkeys
 # Copyright        : (c) Copyright OneOfTheInfiniteMonkeys All Rights Reserved
 # Source Location  : https://github.com/OneOfTheInfiniteMonkeys/MTMP
 # License          : MIT License - See distribution licence details
 #                  : Applicable to only those elements authored by OneOfTheInfiniteMonkeys
-# Hardware         : Addafruit MagTag
+# Hardware         : Adafruit MagTag
 # --------------------------------------
 #                  :
 # From             : CircuitPython Essentials HID Keyboard example
@@ -194,7 +194,7 @@ while True:  #                                              Infinite loop - look
             LBL = hlp.light_boost_level(hlp.average_light(magtag))  #  Get current light level
             LBLTm =  time.monotonic() + LBLPeriod  #               Set new update time
         
-    # Shift modifer time out feature
+    # Shift modifier time out feature
     if (KbdShift == 1):  #                                     Is keyboard Shift active
         if (time.monotonic() > (KbdShiftTm + ShiftHoldPeriod) ):  # Shift Hold period expired?
             KbdShift = 0  #                                    Reset Shift mode
@@ -212,6 +212,8 @@ while True:  #                                              Infinite loop - look
 # --------------------------------------
 #
 # --------------------------------------
+2023-02-05 - 0.5 - Comment Typos corrected
+
 2021-09-15 - 0.4 - Added error detect to USB HID creation to prevent occasional
                    USB detection error when connected to unpowered device
                    LED pulses yellow on off during loop
@@ -224,10 +226,8 @@ while True:  #                                              Infinite loop - look
                    Moved set_mt_leds to helper module
                    Use of timestamp for LED Shift timer as opposed to counter
                    Implemented button value range limit
-
 2021-08-18 - 0.2 - Github functional release
                    Code tidy up, amend KbdDhiftTmr initialisation
-
 2021-08-10 - 0.1 - Github release
 # --------------------------------------
 """
