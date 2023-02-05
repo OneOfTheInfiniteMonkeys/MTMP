@@ -1,14 +1,14 @@
 """><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><--><-->
 # --------------------------------------
 # Project          : MacroPad
-# Version          : 0.4
-# Date             : 31 Aug 2022
+# Version          : 0.5
+# Date             : 05 Feb 2023
 # Author           : OneOfTheInfiniteMonkeys
 # Copyright        : (c) Copyright OneOfTheInfiniteMonkeys All Rights Reserved
 # Source Location  : https://github.com/OneOfTheInfiniteMonkeys/MTMP
 # License          : MIT License - See distribution licence details
 #                  : Applicable to only those elements authored by OneOfTheInfiniteMonkeys
-# Hardware         : Addafruit MagTag
+# Hardware         : Adafruit MagTag
 # --------------------------------------
 #                  :
 # From             : CircuitPython Essentials HID Keyboard example
@@ -59,7 +59,7 @@ from adafruit_magtag.magtag import MagTag # Wrapper for lower level board featur
 def interpreter_ver():
     """
     # --------------------------------------
-    # Return CirctuitPython interpreter version as a string with decimal seperators
+    # Return CirctuitPython interpreter version as a string with decimal separators
     # --------------------------------------
     """
     return ".".join(map(str, sys.implementation[1]))
@@ -135,7 +135,7 @@ def count_neopixel(sel_mode, ldclr, lbl, magtag):
     # --------------------------------------
     # Set the LED's at the top of the MagTag to show the binary value of the
     # integer parameter sel_mode. The range is 0 to 0x0F or 16 decimal
-    # Accomodates LED numbering from right to left
+    # Accommodates LED numbering from right to left
     # 3 parameters:
     #   sel_mode - integer, range 0 to 0x0F or 16 decimal
     #   ldclr    - integer, range 0x000001 to 0x0F0000
@@ -145,7 +145,7 @@ def count_neopixel(sel_mode, ldclr, lbl, magtag):
     if (ldclr == 0):
         ldclr = 0x000800  # Default to green where no colour selected
     if (ldclr > 0x0F0000):
-        ldclr = 0x0F0000  # Accomodate colour and light level boost feature
+        ldclr = 0x0F0000  # Accommodate colour and light level boost feature
     if (lbl < 1):
         lbl = 1    # Always have at least some boost so as not to multiply by 0
     if (sel_mode > 0):  #  Don't write a colour if sel_mode is zero
@@ -242,7 +242,7 @@ def light_boost_level_factor(LightLevel):
     # such that RGB 00 00 08 becomes RGB 00 00 10 when multiplied by 2 (hex)
     # Note:
     #   Values shown above in hex
-    #   The boost points are empiricaly selected
+    #   The boost points are empirically selected
     """
     # bl = Boost Level
     bl = 1
@@ -338,7 +338,7 @@ def battery_check(sv, lpsp, mt_idx, magtag):
         magtag.graphics.set_background("/bmps/magtag-pl-01.bmp")  # Show a Power on graphic - battery empty
         magtag.set_text("Recharge now!     " + "{:.2f}".format(sv) + " Volts", mt_idx, auto_refresh=True )
         d = while_display_busy(3)                                 # Allow display to complete update
-        magtag.exit_and_deep_sleep(lpsp)                          # Basiclly don't wake again - well ~ 1 month
+        magtag.exit_and_deep_sleep(lpsp)                          # Basically don't wake again - well ~ 1 month
     return
 # ------------------------------------------------------------------------------
 
