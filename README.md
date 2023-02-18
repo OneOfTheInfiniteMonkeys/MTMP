@@ -32,6 +32,14 @@ Note
 - If electing to use alternate CircuitPython releases <a href="https://github.com/adafruit/circuitpython/releases" target="_blank"> e.g. CircuitPython 6.3.x, 8.x.x etc.</a> you need to replace the lib .mpy files with the release counterparts in the lib folder.
 - The '<a href="https://github.com/OneOfTheInfiniteMonkeys/MTMP/blob/main/Magtag%20PowerPoint%20Layout%2003.pptx">Magtag PowerPoint Layout 03.pptx</a>' file is a Microsoft&trade; PowerPoint&trade; pack with slidemaster backgrounds consisting of a Magtag graphic to enable graphic design prior to coding. The image scale approximates to 2:1 The file should load into Google&trade; Docs, though this has not be tested.
 
+## Features  
+Essential features are shown below:
+<div align="center">
+  <div style="display: flex; align-items: flex-start;">
+  <img src="https://github.com/OneOfTheInfiniteMonkeys/MTMP/blob/main/images/MagTag-Macro-Pad-Basic-Features-00.png" width="960px" alt="Adafruit MagTag Macro Pad Essential Features. (c) 18 Feb 2023 OneOfTheInfiniteMonkeys All Rights Reserved.">
+  </div>
+</div>
+
 ## Hardware
 Whilst not required for single computer operation. Use of a small <a href="https://www.adafruit.com/product/4236" target="_blank">LiPo</a> battery, supported by the MagTag, permits clean switchover when using the MagTag MacroPad through a <a href="https://en.wikipedia.org/wiki/KVM_switch" target="_blank">KVM</a>. When using a KVM, any device without a battery will typically have to reboot following a KVM selection event. As power is often momentarily interrupted during the KVM switch over process. However, a MagTag using the support for a LiPo battery assists preventing such power interruptions and subsequent reboots. Supporting clean and faster switch over than might otherwise occur. The software includes internal battery monitoring and notification, to address the eventuality a KVM channel without power is selected or the KVM channel device is unpowered.
 
