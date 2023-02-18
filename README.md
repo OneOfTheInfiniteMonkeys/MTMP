@@ -36,7 +36,7 @@ Note
 Essential features are shown below:
 <div align="center">
   <div style="display: flex; align-items: flex-start;">
-  <img src="https://github.com/OneOfTheInfiniteMonkeys/MTMP/blob/main/images/MagTag-Macro-Pad-Basic-Features-00.png" width="960px" alt="Adafruit MagTag Macro Pad Essential Features. (c) 18 Feb 2023 OneOfTheInfiniteMonkeys All Rights Reserved.">
+  <img src="https://github.com/OneOfTheInfiniteMonkeys/MTMP/blob/main/images/Magtag%20PowerPoint%20Layout%2003%20-MP%2001.gif" width="720px" alt="Adafruit MagTag Macro Pad Essential Features. (c) 18 Feb 2023 OneOfTheInfiniteMonkeys All Rights Reserved.">
   </div>
 </div>
 
